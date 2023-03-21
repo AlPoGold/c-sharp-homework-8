@@ -91,7 +91,83 @@
 
 // Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
 
-int[,] ReturnMatrix(int rows, int columns, int min, int max)
+// int[,] ReturnMatrix(int rows, int columns, int min, int max)
+// {
+//     var rand = new Random();
+//     int[,] myArray = new int[rows, columns];
+//     for (int i = 0; i < rows; i++)
+//     {
+//         for (int j = 0; j < columns; j++)
+//         {
+//             myArray[i, j] = rand.Next(min, max + 1);
+
+//         }
+
+//     }
+//     return myArray;
+// }
+
+// void PrintMatrix(int[,] array)
+// {
+//     for (int i = 0; i < array.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < array.GetLength(1); j++)
+//         {
+//             Console.Write($"{array[i, j]} ");
+//         }
+//         Console.WriteLine();
+//     }
+// }
+
+// Console.Write("Please, enter quantity of rows and columns with space between: ");
+// string[] line1 = Console.ReadLine()!.Split(" ");
+// int rows = int.Parse(line1[0]);
+// int columns = int.Parse(line1[1]);
+
+// Console.Write("Please, enter min and max with space between: ");
+// string[] line2 = Console.ReadLine()!.Split(" ");
+// int min = int.Parse(line2[0]);
+// int max = int.Parse(line2[1]);
+
+// int[,] needMatrix = ReturnMatrix(rows, columns, min, max);
+// PrintMatrix(needMatrix);
+
+// int MaxSumRow(int[,] matrix)
+// {
+//     int max = 0;
+//     int position = 0;
+//     for (int i = 0; i < matrix.GetLength(0); i++)
+//     {
+//         int[] tempRow = new int[matrix.GetLength(1)];
+//         int sumRow = 0;
+        
+
+//         for (int j = 0; j < (matrix.GetLength(1)); j++)
+//         {
+//             sumRow += matrix[i, j];
+//         }
+//         if (sumRow > max)
+//         {
+//             max = sumRow;
+//             position = i;
+//         }   
+//     }
+//     return position;
+// }
+// Console.WriteLine();
+
+// int maxRow = MaxSumRow(needMatrix);
+// Console.WriteLine($"The maximum summary in row number {maxRow}");
+
+// Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
+// Например, даны 2 матрицы:
+// 2 4 | 3 4
+// 3 2 | 3 3
+// Результирующая матрица будет:
+// 18 20
+// 15 18
+
+int[,] ReturnMatrix(int rows, int columns)
 {
     var rand = new Random();
     int[,] myArray = new int[rows, columns];
@@ -99,7 +175,7 @@ int[,] ReturnMatrix(int rows, int columns, int min, int max)
     {
         for (int j = 0; j < columns; j++)
         {
-            myArray[i, j] = rand.Next(min, max + 1);
+            myArray[i, j] = rand.Next(1, 10);
 
         }
 
@@ -118,54 +194,51 @@ void PrintMatrix(int[,] array)
         Console.WriteLine();
     }
 }
-
+Console.WriteLine("Remember, columns of first matrix MUST BE equal rows of second matrix");
 Console.Write("Please, enter quantity of rows and columns with space between: ");
 string[] line1 = Console.ReadLine()!.Split(" ");
-int rows = int.Parse(line1[0]);
-int columns = int.Parse(line1[1]);
+int rows1 = int.Parse(line1[0]);
+int columns1 = int.Parse(line1[1]);
 
 Console.Write("Please, enter min and max with space between: ");
 string[] line2 = Console.ReadLine()!.Split(" ");
-int min = int.Parse(line2[0]);
-int max = int.Parse(line2[1]);
+int rows2 = int.Parse(line2[0]);
+int columns2 = int.Parse(line2[1]);
 
-int[,] needMatrix = ReturnMatrix(rows, columns, min, max);
-PrintMatrix(needMatrix);
-
-int MaxSumRow(int[,] matrix)
-{
-    int max = 0;
-    int position = 0;
-    for (int i = 0; i < matrix.GetLength(0); i++)
-    {
-        int[] tempRow = new int[matrix.GetLength(1)];
-        int sumRow = 0;
-        
-
-        for (int j = 0; j < (matrix.GetLength(1)); j++)
-        {
-            sumRow += matrix[i, j];
-        }
-        if (sumRow > max)
-        {
-            max = sumRow;
-            position = i;
-        }   
-    }
-    return position;
-}
+int[,] matrix1 = ReturnMatrix(rows1, columns1);
+int[,] matrix2 = ReturnMatrix(rows2, columns2);
+Console.WriteLine("Your first matrix");
+PrintMatrix(matrix1);
 Console.WriteLine();
+Console.WriteLine("Your second matrix");
+PrintMatrix(matrix2);
 
-int maxRow = MaxSumRow(needMatrix);
-Console.WriteLine($"The maximum summary in row number {maxRow}");
+int[,] MultiplyMatrix(int[,] matrix1, int[,] matrix2)
+{
+    int[,] matrix3 = new int[matrix1.GetLength(0), matrix2.GetLength(1)];
+    for(int i = 0; i < matrix3.GetLength(0); i++)
+    {
+        for(int j = 0; j < matrix3.GetLength(1); j++)
+        {
+            matrix3[i, j] = 0;
+            for(int m = 0; m<matrix1.GetLength(1); m++)
+            {
+                matrix3[i, j]+= matrix1[i, m] * matrix2[m, j];
+            }
+        }
+    }
+    return matrix3;
+}
 
-// Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
-// Например, даны 2 матрицы:
-// 2 4 | 3 4
-// 3 2 | 3 3
-// Результирующая матрица будет:
-// 18 20
-// 15 18
+
+if (matrix1.GetLength(1) == matrix2.GetLength(0))
+{
+    int[,] matrix3 = MultiplyMatrix(matrix1, matrix2);
+    Console.WriteLine();
+    Console.WriteLine("Result:");
+    PrintMatrix(matrix3);
+}
+else Console.WriteLine("Please, check sizes of your matrixes!!! Operation is impossible.");
 
 // Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
 // Массив размером 2 x 2 x 2
