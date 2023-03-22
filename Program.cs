@@ -195,12 +195,12 @@
 //     }
 // }
 // Console.WriteLine("Remember, columns of first matrix MUST BE equal rows of second matrix");
-// Console.Write("Please, enter quantity of rows and columns with space between: ");
+// Console.Write("Please, enter quantity of rows and columns of first matrix with space between: ");
 // string[] line1 = Console.ReadLine()!.Split(" ");
 // int rows1 = int.Parse(line1[0]);
 // int columns1 = int.Parse(line1[1]);
 
-// Console.Write("Please, enter quantity of rows and columns with space between: ");
+// Console.Write("Please, enter quantity of rows and columns of second matrix with space between: ");
 // string[] line2 = Console.ReadLine()!.Split(" ");
 // int rows2 = int.Parse(line2[0]);
 // int columns2 = int.Parse(line2[1]);
@@ -247,65 +247,62 @@
 // 27(0,0,1) 90(0,1,1)
 // 26(1,0,1) 55(1,1,1)
 
-void PrintMatrix(int[, ,] array)
-{
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        for (int j = 0; j < array.GetLength(1); j++)
-        {
-            for (int k = 0; k < array.GetLength(2); k++)
-            {
-                Console.WriteLine($"{array[i, j, k]}({i}, {j},  {k})");
-                
+// void PrintMatrix(int[, ,] array)
+// {
+//     for (int i = 0; i < array.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < array.GetLength(1); j++)
+//         {
+//             for (int k = 0; k < array.GetLength(2); k++)
+//             {
+//                 Console.Write($"{array[i, j, k]}({i},{j},{k})  ");
+//             }
+//             Console.WriteLine();
+//         }
+//         Console.WriteLine("\t");
+//     }
 
-            }
-            
+// }
 
-        }
-        
-    }
+// int[, , ] ReturnMatrix(int rows, int columns, int koef )
+// {
+//     var rand = new Random();
+//     int[, , ] myArray = new int[rows, columns, koef];
+//     for (int i = 0; i < rows; i++)
+//     {
+//         for (int j = 0; j < columns; j++)
+//         {
+//             for (int k = 0; k < koef; k++)
+//             {
+//                 myArray[i, j, k] = rand.Next(10, 100);
+//                 int i2;
+//                 int j2;
+//                 int k2;
+//                 for (i2 = 0, j2 = 0, k2 = 0; i2 < myArray.GetLength(0) && j2 < myArray.GetLength(1) && k2 < myArray.GetLength(2); i2++, j2++, k2++)
+//                 {
+//                     if (myArray[i, j, k] == myArray[i2, j2, k2])
+//                     {
+//                         myArray[i, j, k] = rand.Next(10, 100);
+//                         break;
+//                     }
+//                 }
+//             }
 
-}
+//         }
 
-int[, , ] ReturnMatrix(int rows, int columns, int koef )
-{
-    var rand = new Random();
-    int[, , ] myArray = new int[rows, columns, koef];
-    for (int i = 0; i < rows; i++)
-    {
-        for (int j = 0; j < columns; j++)
-        {
-            for (int k = 0; k < koef; k++)
-            {
-                myArray[i, j, k] = rand.Next(10, 100);
-                int i2;
-                int j2;
-                int k2;
-                for (i2 = 0, j2 = 0, k2 = 0; i2 < myArray.GetLength(0) && j2 < myArray.GetLength(1) && k2 < myArray.GetLength(2); i2++, j2++, k2++)
-                {
-                    if (myArray[i, j, k] == myArray[i2, j2, k2])
-                    {
-                        myArray[i, j, k] = rand.Next(10, 100);
-                        break;
-                    }
-                }
-            }
-
-        }
-
-    }
+//     }
 
 
-    return myArray;
-}
+//     return myArray;
+// }
 
-Console.Write("Please, enter sizes your 3D-matrix with spaces between: ");
-string[] line1 = Console.ReadLine()!.Split(" ");
-int rows = int.Parse(line1[0]);
-int columns = int.Parse(line1[1]);
-int koef = int.Parse(line1[2]);
-int[,,] my3Dmatrix = ReturnMatrix(rows, columns, koef);
-PrintMatrix(my3Dmatrix);
+// Console.Write("Please, enter sizes your 3D-matrix with spaces between: ");
+// string[] line1 = Console.ReadLine()!.Split(" ");
+// int rows = int.Parse(line1[0]);
+// int columns = int.Parse(line1[1]);
+// int koef = int.Parse(line1[2]);
+// int[,,] my3Dmatrix = ReturnMatrix(rows, columns, koef);
+// PrintMatrix(my3Dmatrix);
 
 // ДОП
 
