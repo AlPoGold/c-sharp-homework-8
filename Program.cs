@@ -313,3 +313,50 @@
 // 11 16 15 06
 // 10 09 08 07
 
+void PrintMatrix(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            Console.Write($"{array[i, j]} ");
+        }
+        Console.WriteLine();
+    }
+}
+
+int[,] spiralMatrix = new int[4, 4];
+int size = 4;
+int count = 1;
+
+
+int x = 0, y = 0;
+
+while (size > 0)
+{
+    for (int i = y; i <= y + size - 1; i++)
+    {
+        spiralMatrix[x, i] = count++;
+    }
+
+    for (int j = x + 1; j <= x + size - 1; j++)
+    {
+        spiralMatrix[j, y + size - 1] = count++;
+    }
+
+    for (int i = y + size - 2; i >= y; i--)
+    {
+        spiralMatrix[x + size - 1, i] = count++;
+    }
+
+    for (int i = x + size - 2; i >= x + 1; i--)
+    {
+        spiralMatrix[i, y] = count++;
+    }
+
+    x = x + 1;
+    y = y + 1;
+    size = size - 2;
+}
+PrintMatrix(spiralMatrix);
+
